@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     mode: 'development',
     entry: {
-        bundle: path.resolve(__dirname, 'src/index.js')
+        bundle: path.resolve(__dirname, 'src/index.ts')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -30,17 +30,26 @@ module.exports = {
                     'sass-loader',
                 ]
             },
-            {
-                test:/\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                },
-            },
+            // {
+            //     test:/\.(js|ts)$/,
+            //     exclude: /node_modules/,
+            //     use: {
+            //         loader: 'babel-loader',
+            //     },
+            // },
             {
                 test:/\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource'
             },
+            {
+                test:/\.ts$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'ts-loader',
+                },
+            }
         ],
-    }
+    },
+
+    devtool: false,
 }
